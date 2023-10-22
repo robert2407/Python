@@ -6,7 +6,7 @@ def cmmdc(numbers):                                   #ex1
         return None
 
     result = numbers[0]
-    for num in numbers[1:]:
+    for num in numbers[1:]:         # pornesc de la elementul cu index 1, adica al doilea
         result = math.gcd(result, num)
 
     return result
@@ -49,17 +49,11 @@ def camel_to_snake(string):                             #ex4
     return snake_case
 
 def matrix_spiral(matrix):                               #ex5
-    if not matrix:
-        return ""
-
     result = ""
-    while matrix:
+    while matrix:           #fac asta pana se termina matricea, am facut un "cerc" complet de verificare asa
         # primul rand
         result += "".join(matrix[0])
         matrix = matrix[1:]     # iau elementele in afara de prima linie
-
-        if not matrix:
-            break
 
         # iau ultimul element din fiecare rand
         for row in matrix:
@@ -71,7 +65,7 @@ def matrix_spiral(matrix):                               #ex5
             result += "".join(matrix[-1][::-1])
             matrix.pop()
 
-        # iau primul element din liniile ramase
+        # merg pe randuri de jos in sus si iau primul element
         for row in matrix[::-1]:
             result += row[0]
             row.pop(0)

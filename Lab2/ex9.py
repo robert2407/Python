@@ -10,11 +10,11 @@ def find_seats(matrix):
 
     for col in range(columns):
         for row in range(rows):
-            current_height = matrix[row][col]
+            current = matrix[row][col]
 
             blocked = False                   # verific pe fiecare rand ca un spectator de mai jos sa nu
             for i in range(row):                 # fie mai mic sau egal decat unul de mai sus
-                if matrix[i][col] >= current_height:
+                if matrix[i][col] >= current:
                     blocked = True
                     break
 

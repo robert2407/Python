@@ -1,5 +1,7 @@
 import os
 import filecmp
+import sys
+import hashlib
 
 def remove_duplicates(folder_path):
     duplicates = {}
@@ -14,6 +16,12 @@ def remove_duplicates(folder_path):
                         file_content = file_content.read()
                 except IOError as e:
                     print(f"Error at reading: {e}")
+
+                hashed_data = hashlib.sha256(file_content.encode())
+                print (hashed_data)
+                print (hashed_data.hexdigest())
+
+                file_content = hashed_data.hexdigest()
 
                 if file_content not in duplicates:
                     duplicates[file_content] = [current_path]
@@ -68,7 +76,17 @@ def remove_duplicates(folder_path):
         print("The directory has no duplicates ! ")
 
 if __name__ == "__main__":
-    folder_path = input("Folder to search in -> ")
+    # folder_path = input("Folder to search in -> ")
+    #
+    # if not os.path.isdir(folder_path):
+    #     print("Folder name does not exist ! ")
+    # else:
+    #     remove_duplicates(folder_path)
+    if len(sys.argv) != 2:
+        print("nu e corect")
+        sys.exit("error")
+
+    folder_path = sys.argv[1]
 
     if not os.path.isdir(folder_path):
         print("Folder name does not exist ! ")
